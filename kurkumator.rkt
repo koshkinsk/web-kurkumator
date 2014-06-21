@@ -1,7 +1,7 @@
 #lang racket
 
-;; blind rewrite of authentic kurkumator.el
-
+;; blind rewrite of authentic kurkumator
+(provide kokoify-text)
 ;; from rosetta code 
 (define (levenshtein a b)
   (define (ls0 a-index b-index)
@@ -58,7 +58,6 @@
   (define rstr "")
   (let loop ()
     (let ([rm (regexp-match-positions #rx"([а-яА-Я]+)" text start)])
-      (printf "~a\n" rm)
       (when (not (eq? rm #f))
         (let* ([ns (car (car rm))]
                [ne (cdr (car rm))]
