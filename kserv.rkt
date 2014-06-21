@@ -23,7 +23,7 @@
                         (kokoify-text kinput kmd)))])
     (response/xexpr
      `(html (head (title "KaS (Kurkuma-as-service) (2017)"))
-            (body (p (font ([size "4"]) "Веб-ебло куркуматора."))
+            (body (p (font ([size "4"]) "Веб-ебло куркуматора // Kurkuma As Service"))
                   (p (b ,ktext))
                   (form ([action "/kurkumator.rkt"])
                         (p "Копируй сюда свою пасту: ")
