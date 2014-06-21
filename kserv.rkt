@@ -5,6 +5,14 @@
          web-server/servlet-env)
 
 (require "kurkumator.rkt")
+(require srfi/1)
+
+(define (emit-unfucked-text text)
+  (let ([spl (string-split text "\n")])
+    (append (list 'p)
+            (for/list ([line spl])
+              `(br ,line)))))
+
  
 (define (my-app req)
   (let* ([bs (request-bindings req)]
@@ -17,14 +25,13 @@
          [ktext (if (eq? kmd #f)
                     (begin
                       (set! kmd 3)
-                      (format "Error: Ты, это давай КОКОКО отсюда с такими числами: ~a"  (extract-binding/single 'kmd bs))
-                      )
+                      (format "Error: Ты, это давай КОКОКО отсюда с такими числами: ~a"  (extract-binding/single 'kmd bs)))
                     (if (eq? kinput #f) ""
                         (kokoify-text kinput kmd)))])
     (response/xexpr
      `(html (head (title "KaS (Kurkuma-as-service) (2017)"))
             (body (p (font ([size "4"]) "Веб-ебло куркуматора // Kurkuma As Service"))
-                  (p (b ,ktext))
+                  (b ,(emit-unfucked-text ktext))
                   (form ([action "/kurkumator.rkt"])
                         (p "Копируй сюда свою пасту: ")
                         (TEXTAREA ([rows "4"] [cols "50"] [name "ktext"]) ,kinput )
@@ -37,6 +44,5 @@
                #:listen-ip #f
                #:servlet-path "/kurkumator.rkt"
                #:log-file "kurkumator.log"
-               #:command-line? #t
-               )
+               #:command-line? #t)
 
