@@ -1,7 +1,8 @@
 #lang racket
 
 ;; blind rewrite of authentic kurkumator
-(provide kokoify-text)
+(provide kokoify-text html-unfuck)
+
 ;; from rosetta code 
 (define (levenshtein a b)
   (define (ls0 a-index b-index)
@@ -51,6 +52,10 @@
       (when (and (> ldiff cdiff) (< cdiff max-diff))
         (set! res (cdr cw))
         (set! ldiff cdiff))))
+
+  (when (char-upper-case? (car (string->list word)))
+    (set! res (string-titlecase res)))
+  
   res)
 
 (define (kokoify-text text)
@@ -68,4 +73,9 @@
               )
           (set! start ne)
           (loop)))))
+  (set! rstr (string-append rstr (substring text start)))
+
   rstr)
+
+(define (html-unfuck text)
+  (string-replace text "\n" "<br>"))
