@@ -10,7 +10,7 @@
   (let* ([bs (request-bindings req)]
          [kinput (if (exists-binding? 'ktext bs)
                    (extract-binding/single 'ktext bs)
-                   #f)]
+                   "")]
          [kmd (if (exists-binding? 'kmd bs)
                   (string->number (extract-binding/single 'kmd bs))
                    10)]
