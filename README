@@ -1,2 +1,2 @@
 Run kserv.rkt under racket:
-racket kserv.rkt
+racket kserv.rkt or exectute run-kurkumator.sh
