@@ -25,7 +25,7 @@
                         (p (font ([size "1"]) "Версия 0.11пук"))))))))
  
 (serve/servlet my-app
-               #:port 1337
+               #:port 35007
                #:servlet-path "/kurkumator.rkt"
                #:log-file "kurkumator.log")
 
