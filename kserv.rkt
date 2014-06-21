@@ -1,18 +1,16 @@
 #lang racket
-; version 0.13
+; version 0.14
 
 (require web-server/servlet
          web-server/servlet-env)
 
 (require "kurkumator.rkt")
-(require srfi/1)
 
 (define (emit-unfucked-text text)
   (let ([spl (string-split text "\n")])
-    (append (list 'p)
-            (for/list ([line spl])
-              `(br ,line)))))
-
+    (append '(p)
+            (for/fold ([rl null]) ([line spl])
+              (append rl (list line '(br)))))))
  
 (define (my-app req)
   (let* ([bs (request-bindings req)]
