@@ -27,5 +27,6 @@
 (serve/servlet my-app
                #:port 35007
                #:servlet-path "/kurkumator.rkt"
-               #:log-file "kurkumator.log")
+               #:log-file "kurkumator.log"
+               #:command-line? #t)
 
