@@ -62,7 +62,10 @@
         (let* ([ns (car (car rm))]
                [ne (cdr (car rm))]
                [nw (find-nearest (substring text ns ne))])
-          (set! rstr (string-append rstr (substring text start ns) nw))
+          (if (> (- ne ns) 3) ;; don't words shorter than 4 letters
+              (set! rstr (string-append rstr (substring text start ns) nw))
+              (set! rstr (string-append rstr (substring text start ns) (substring text ns ne)))
+              )
           (set! start ne)
           (loop)))))
   rstr)
