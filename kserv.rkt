@@ -1,5 +1,5 @@
 #lang racket
-; version 0.11
+; version 0.12
 
 (require web-server/servlet
          web-server/servlet-env)
@@ -11,18 +11,21 @@
          [kinput (if (exists-binding? 'ktext bs)
                    (extract-binding/single 'ktext bs)
                    #f)]
+         [kmd (if (exists-binding? 'kmd bs)
+                  (string->number (extract-binding/single 'kmd bs))
+                   10)]
          [ktext (if (eq? kinput #f) ""
-                    (kokoify-text kinput))]
-         )
+                    (kokoify-text kinput kmd))])
     (response/xexpr
      `(html (head (title "KaS (Kurkuma-as-service) (2017)"))
             (body (p (font ([size "4"]) "Веб-ебло куркуматора."))
                   (p (b ,ktext))
                   (form ([action "/kurkumator.rkt"])
                         (p "Копируй сюда свою пасту: ")
-                        (TEXTAREA ([rows "4"] [cols "50"] [name "ktext"]) )
+                        (TEXTAREA ([rows "4"] [cols "50"] [name "ktext"]) ,kinput )
+                        (p "Zashquar magntitude: " (input ([name "kmd"] [value ,(number->string kmd)])))
                         (p (input ([type "submit"] [value "Mamka ipal)))"])))
-                        (p (font ([size "1"]) "Версия 0.11пук"))))))))
+                        (p (font ([size "1"]) "Версия 0.12пук"))))))))
  
 (serve/servlet my-app
                #:port 35007
