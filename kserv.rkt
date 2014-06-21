@@ -15,7 +15,7 @@
                     (kokoify-text kinput))]
          )
     (response/xexpr
-     `(html (head (title "2017 kurkumator web-eblo"))
+     `(html (head (title "KaS (Kurkuma-as-service) (2017)"))
             (body (p (font ([size "4"]) "Веб-ебло куркуматора."))
                   (p (b ,ktext))
                   (form ([action "/kurkumator.rkt"])
