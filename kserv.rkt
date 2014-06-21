@@ -13,10 +13,10 @@
                    "")]
          [kmd (if (exists-binding? 'kmd bs)
                   (string->number (extract-binding/single 'kmd bs))
-                   10)]
+                   3)]
          [ktext (if (eq? kmd #f)
                     (begin
-                      (set! kmd 10)
+                      (set! kmd 3)
                       (format "Error: Ты, это давай КОКОКО отсюда с такими числами: ~a"  (extract-binding/single 'kmd bs))
                       )
                     (if (eq? kinput #f) ""
