@@ -1,7 +1,7 @@
 #lang racket
 
 ;; blind rewrite of authentic kurkumator
-(provide kokoify-text html-unfuck)
+(provide kokoify-text)
 
 ;; from rosetta code 
 (define (levenshtein a b)
@@ -67,13 +67,10 @@
                [nw (find-nearest (substring text ns ne) max-diff)])
           (if (> (- ne ns) 3) ;; don't change words shorter than 4 letters
               (set! rstr (string-append rstr (substring text start ns) nw))
-              (set! rstr (string-append rstr (substring text start ns) (substring text ns ne)))
-              )
+              (set! rstr (string-append rstr (substring text start ns) (substring text ns ne))))
           (set! start ne)
           (loop)))))
   (set! rstr (string-append rstr (substring text start)))
 
   rstr)
 
-(define (html-unfuck text)
-  (string-replace text "\n" "<br>"))
