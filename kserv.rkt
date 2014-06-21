@@ -35,7 +35,7 @@
                         (TEXTAREA ([rows "4"] [cols "50"] [name "ktext"]) ,kinput )
                         (p "Zashquar magntitude: " (input ([type "number"] [min "1"] [max "20"] [name "kmd"] [value ,(number->string kmd)])))
                         (p (input ([type "submit"] [value "Mamka ipal)))"])))
-                        (p (font ([size "1"]) "Версия 0.12пук"))))))))
+                        (p (font ([size "1"]) "Версия 0.14пук"))))))))
  
 (serve/servlet my-app
                #:port 35007
