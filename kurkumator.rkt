@@ -37,7 +37,7 @@
   (let* ([devow-rx (format "([~a])" vowel-string)]
          [squeeze-rx (format "([~a])\\1+" cons-string)]
          [devow (regexp-replace* devow-rx word "")])
-    (remove-repeats devow)))
+    devow))
 
 (define co-list (map squeeze-word ko-list))
 (define co-ko-list (map cons co-list ko-list))
